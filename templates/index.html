@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="app-frame">
+        <section class="panel panel-left" aria-label="Calculator">
+          <header class="topbar">
+            <div class="tabs" aria-label="Modes">
+              <button class="tab" data-page="standard" type="button">Standard</button>
+              <button class="tab active" data-page="scientific" type="button">Scientific</button>
+              <button class="tab" data-page="graph" type="button">Graph</button>
+              <button class="tab" data-page="programmer" type="button">Programmer</button>
+              <button class="tab" data-page="converter" type="button">Converter</button>
+              <button class="tab" data-page="history" type="button">History</button>
+            </div>
+            <div class="actions">
+              <label class="toggle" title="Toggle Degrees (DEG) / Radians (RAD)">
+                <input id="degToggle" type="checkbox" checked />
+                <span class="toggle-pill"><span class="toggle-knob"></span></span>
+                <span class="toggle-text" id="degLabel">DEG</span>
+              </label>
+            </div>
+          </header>
+
+          <main class="pages">
+            <div class="page page-scientific is-active" data-page="scientific">
+              <div class="display-wrap">
+                <input id="expr" class="expr-input" autocomplete="off" spellcheck="false" placeholder="Type here… e.g. (256+123)*(845-25)" />
+                <div class="display">
+                  <div id="exprLine" class="expr-line">&nbsp;</div>
+                  <div id="ansLine" class="ans-line">0</div>
+                </div>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="groupbar" aria-hidden="true">
+                <div>Trigonometry</div>
+                <div>Probability</div>
+                <div>Calculus</div>
+              </div>
+
+              <div class="keypad" aria-label="Keypad">
+                <button class="key key-danger" data-action="clear">C</button>
+                <button class="key key-danger" data-action="back">⌫</button>
+                <button class="key" data-insert="(">(</button>
+                <button class="key" data-insert=")">)</button>
+                <button class="key" data-action="ans">ANS</button>
+
+                <button class="key" data-insert="sin(">sin</button>
+                <button class="key" data-insert="cos(">cos</button>
+                <button class="key" data-insert="tan(">tan</button>
+                <button class="key" data-insert="log(">log</button>
+                <button class="key" data-insert="ln(">ln</button>
+
+                <button class="key" data-insert="sqrt(">√</button>
+                <button class="key" data-insert="**2">x²</button>
+                <button class="key" data-insert="**">xʸ</button>
+                <button class="key" data-insert="pi">π</button>
+                <button class="key" data-insert="e">e</button>
+
+                <button class="key" data-insert="7">7</button>
+                <button class="key" data-insert="8">8</button>
+                <button class="key" data-insert="9">9</button>
+                <button class="key" data-insert="÷">÷</button>
+                <button class="key" data-insert="%">%</button>
+
+                <button class="key" data-insert="4">4</button>
+                <button class="key" data-insert="5">5</button>
+                <button class="key" data-insert="6">6</button>
+                <button class="key" data-insert="×">×</button>
+                <button class="key" data-insert="^">^</button>
+
+                <button class="key" data-insert="1">1</button>
+                <button class="key" data-insert="2">2</button>
+                <button class="key" data-insert="3">3</button>
+                <button class="key" data-insert="-">-</button>
+                <button class="key" data-insert="abs(">abs</button>
+
+                <button class="key" data-insert="0">0</button>
+                <button class="key" data-insert=".">.</button>
+                <button class="key key-eq" data-action="eval">=</button>
+                <button class="key" data-insert="+">+</button>
+                <button class="key" data-insert="fact(">fact</button>
+              </div>
+            </div>
+
+            <div class="page page-standard" data-page="standard">
+              <div class="display-wrap">
+                <input id="exprStd" class="expr-input" autocomplete="off" spellcheck="false" placeholder="Type here… e.g. (12+3)/5" />
+                <div class="display">
+                  <div id="exprLineStd" class="expr-line">&nbsp;</div>
+                  <div id="ansLineStd" class="ans-line">0</div>
+                </div>
+              </div>
+              <div class="divider"></div>
+
+              <div class="keypad keypad-std" aria-label="Standard Keypad">
+                <button class="key key-danger" data-std-action="clear">C</button>
+                <button class="key key-danger" data-std-action="back">⌫</button>
+                <button class="key" data-std-insert="(">(</button>
+                <button class="key" data-std-insert=")">)</button>
+
+                <button class="key" data-std-insert="7">7</button>
+                <button class="key" data-std-insert="8">8</button>
+                <button class="key" data-std-insert="9">9</button>
+                <button class="key" data-std-insert="÷">÷</button>
+
+                <button class="key" data-std-insert="4">4</button>
+                <button class="key" data-std-insert="5">5</button>
+                <button class="key" data-std-insert="6">6</button>
+                <button class="key" data-std-insert="×">×</button>
+
+                <button class="key" data-std-insert="1">1</button>
+                <button class="key" data-std-insert="2">2</button>
+                <button class="key" data-std-insert="3">3</button>
+                <button class="key" data-std-insert="-">-</button>
+
+                <button class="key" data-std-insert="0">0</button>
+                <button class="key" data-std-insert=".">.</button>
+                <button class="key" data-std-insert="+">+</button>
+                <button class="key key-eq" data-std-action="eval">=</button>
+              </div>
+            </div>
+
+            <div class="page page-graph" data-page="graph">
+              <div class="graph-form">
+                <input id="fx" class="expr-input" autocomplete="off" spellcheck="false" placeholder="f(x) e.g. sin(x) + x^2" />
+                <div class="graph-row">
+                  <input id="xmin" class="mini" type="number" step="0.5" value="-10" />
+                  <input id="xmax" class="mini" type="number" step="0.5" value="10" />
+                  <button class="key key-eq" id="plot" type="button">Plot</button>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <canvas id="graph" class="graph-canvas" width="800" height="400"></canvas>
+            </div>
+
+            <div class="page page-programmer" data-page="programmer">
+              <div class="tool-card">
+                <div class="tool-title">Programmer</div>
+                <div class="tool-sub">Convert between bases (BIN / OCT / DEC / HEX)</div>
+                <input id="dec" class="expr-input" autocomplete="off" spellcheck="false" placeholder="Decimal" />
+                <div class="base-grid">
+                  <input id="bin" class="expr-input" autocomplete="off" spellcheck="false" placeholder="Binary" />
+                  <input id="oct" class="expr-input" autocomplete="off" spellcheck="false" placeholder="Octal" />
+                  <input id="hex" class="expr-input" autocomplete="off" spellcheck="false" placeholder="Hex" />
+                </div>
+              </div>
+            </div>
+
+            <div class="page page-converter" data-page="converter">
+              <div class="tool-card">
+                <div class="tool-title">Converter</div>
+                <div class="tool-sub">Temperature + Length</div>
+                <div class="convert-grid">
+                  <div class="convert-block">
+                    <div class="convert-title">Temperature</div>
+                    <input id="celsius" class="expr-input" type="number" step="0.1" placeholder="Celsius" />
+                    <input id="fahrenheit" class="expr-input" type="number" step="0.1" placeholder="Fahrenheit" />
+                  </div>
+                  <div class="convert-block">
+                    <div class="convert-title">Length</div>
+                    <input id="meters" class="expr-input" type="number" step="0.01" placeholder="Meters" />
+                    <input id="feet" class="expr-input" type="number" step="0.01" placeholder="Feet" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="page page-history" data-page="history">
+              <div class="tool-card">
+                <div class="tool-title">History</div>
+                <div class="tool-sub">Tap an entry to reuse it</div>
+                <div id="historyPage" class="history-list">
+                  <div class="history-empty">No calculations yet</div>
+                </div>
+              </div>
+            </div>
+          </main>
+
+          <footer class="credit">Developed by <b>Tonde</b></footer>
+        </section>
+
+        <aside class="panel panel-right" aria-label="History">
+          <div class="history-header">
+            <div class="history-title">History</div>
+            <button class="history-clear" id="clearHistory" type="button">Clear</button>
+          </div>
+          <div id="history" class="history-list">
+            <div class="history-empty">No calculations yet</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
